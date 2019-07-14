@@ -28,8 +28,8 @@ typedef struct order{
 
 typedef struct orders_node{
 	struct order *order;
-	struct order_node *pre;
-	struct order_node *next;
+	struct orders_node *pre;
+	struct orders_node *next;
 }orders_node_t;
 
 typedef struct backend_customer{

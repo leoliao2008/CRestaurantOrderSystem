@@ -1,6 +1,7 @@
 #include "customer.h"
 #include "dish.h"
 #include "order.h"
+#include "orders_node.h"
 
 void main()
 {
@@ -32,5 +33,14 @@ void main()
 	printf("%s\n",temp3);
 	order_t order2=json_object_json_string_to_order(temp3);
 	printf("%s\n",json_object_order_to_json_string(&order2));
+
+	printf("------------------------------------------\n");
+	orders_node_t *head=orders_node_init_head();
+	int i;
+	for(i=0;i<10;i++){
+		orders_node_add_order(head, &order);
+	}
+	orders_node_print_orders(head);
+	orders_node_free_all_nodes(head);
 
 }

@@ -56,8 +56,8 @@ void orders_node_free_all_nodes(orders_node_t *head){
 	orders_node_t *node;
 	while(temp!=head){
 		node=temp;
-		free(node);
 		temp=temp->next;
+		free(node);
 	}
 	free(temp);
 }

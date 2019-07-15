@@ -47,8 +47,8 @@ typedef struct payment{
 }payment_t;
 
 typedef struct bill{
-	struct payment *pay_list;
-	int list_len;
+	struct payment *pays;
+	int pays_len;
 	struct customer cust;
 	float total_price;
 	long settle_time;

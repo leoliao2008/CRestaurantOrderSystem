@@ -1,1 +1,3 @@
-RestaurantOrderSystem.si4project
+*.si4project
+./Objs/*
+./Bins/*

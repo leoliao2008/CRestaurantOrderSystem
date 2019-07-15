@@ -1,17 +1,21 @@
 CC=gcc
 Lib=-lpthread -ljson -lsqlite3
-Objs=$(patsubst %.c,%.o,$(wildcard ./*.c))
+Objs=$(addprefix ../../Objs/,$(patsubst %.c,%.o,$(wildcard *.c)))
 CFLAGS=-o0
+Includes=-I../Includes/
 
 .PHONY:all clean
 
 all:$(Objs)
 
-%.o:%.c %.h
-	$(CC) $(CFLAGS) -c $< -o $@ $(Lib)
+$(Objs):$(patsubst %.o,%.c,$(notdir $@)) $(addprefix ../Includes/,$(patsubst %.o,%.h,$(notdir $@))) ../Includes/base_includes.h ../Includes/types.h
+	$(CC) $(CFLAGS) -c $(patsubst %.o, %.c, $(notdir $@)) $(Includes) -o $@ $(Lib)
+	
+#%.o:%.c 
+#	$(CC) $(CFLAGS) $(Includes) -c $< -o $@ $(Lib)
 
 test:$(Objs) 
 	$(CC) $(CFLAGS) $^ -o test $(Lib)
 
 clean:
-	-rm -rf *.o test .*.*.sw?	
+	-rm -rf $(Objs) test .*.*.sw?	

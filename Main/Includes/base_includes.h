@@ -13,6 +13,11 @@
 #include <sys/stat.h>
 #include <time.h>
 #include <sqlite3.h>
+#include <sys/ipc.h>
+#include <sys/msg.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <sys/socket.h>
 #include "/usr/local/include/json/json.h"
 
 

@@ -82,5 +82,12 @@ void main()
 	printf("-----------------response-------------------\n");
 	printf("%s\n",response_check_out(&bill));
 
+	printf("-----------------dishes_node-----------------\n");
+	dishes_node_t* dnode=dishes_node_init_head();
+	dishes_node_add_dish(dnode, dish);
+	dishes_node_add_dish(dnode, dish2);
+	dishes_node_print_all(dnode);
+	dishes_node_free(dnode);
+
 	
 }

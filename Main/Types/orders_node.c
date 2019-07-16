@@ -62,6 +62,19 @@ void orders_node_free_all_nodes(orders_node_t *head){
 	free(temp);
 }
 
+bool orders_node_update_serve_time(orders_node_t *head,int order_id,long serve_time){
+	orders_node_t *next=head->next;
+	if(next==head) return false;
+	while(next!=head){
+		if(next->order->order_id==order_id){
+			next->order->serve_time=serve_time;
+			return true;
+		}
+	}
+	return false;
+}
+
+
 
 
 

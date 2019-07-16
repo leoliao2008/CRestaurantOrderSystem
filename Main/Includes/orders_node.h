@@ -8,6 +8,7 @@ extern void orders_node_add_order(orders_node_t *head,order_t *order);
 extern void orders_node_remove_order(orders_node_t *head,order_t *order);
 extern void orders_node_print_orders(orders_node_t *head);
 extern void orders_node_free_all_nodes(orders_node_t *head);
+extern bool orders_node_update_serve_time(orders_node_t *head,int order_id,long serve_time);
 
 
 

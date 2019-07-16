@@ -4,6 +4,8 @@
 #include "orders_node.h"
 #include "payment.h"
 #include "bill.h"
+#include "request.h"
+#include "response.h"
 
 void main()
 {
@@ -73,6 +75,12 @@ void main()
 	printf("%s\n",temp5);
 	bill_t bill2=json_object_json_string_to_bill(temp5);
 	printf("%s\n",json_object_bill_to_json_string(&bill2));
+
+	printf("-----------------request--------------------\n");
+	printf("%s\n",request_place_order(&order));
+
+	printf("-----------------response-------------------\n");
+	printf("%s\n",response_check_out(&bill));
 
 	
 }

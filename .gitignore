@@ -1,4 +1,4 @@
 *.si4project
-./Objs/*
+./Objs/*.o
 ./Bins/*
 .git

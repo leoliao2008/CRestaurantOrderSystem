@@ -54,4 +54,19 @@ typedef struct bill{
 	long settle_time;
 }bill_t;
 
+typedef struct request{
+	int request_type;
+	char *params;
+	int params_len;
+	char *data;
+	int data_len;
+}request_t;
+
+typedef struct response{
+	int response_type;
+	int result_code;
+	char *data;
+	int data_len;
+}response_t;
+
 #endif

@@ -50,8 +50,59 @@ void db_utils_add_dish(const char*name,float price,int num_avail)
 		//perror("db_utils_add_dish error.\n");
 	}
 	printf("add dish ends...\n");
-	
 }
+
+
+int db_utils_dish_get_number_avail(int dish_id)
+{
+	int result=-1;
+	dish_t *temp_dish=NULL;
+	dishes_node_t *head=dishes_node_init_head();
+	db_utils_query_dishes(head);
+	dishes_node_t *next=head->next;
+	while(next!=head){
+		temp_dish=next->dish;
+		if(temp_dish->dish_id==dish_id){
+			result=temp_dish->num_avail;
+			break;
+		}
+		next=next->next;
+	}
+	return result;
+
+}
+
+bool db_utils_place_order(order_t order)
+{
+	bool is_success=false;
+	dish_t order_dish=order.dish;
+	dish_t *temp_dish=NULL;
+	dishes_node_t *head=dishes_node_init_head();
+	db_utils_query_dishes(head);
+	dishes_node_t *next=head->next;
+	while(next!=head){
+		temp_dish=next->dish;
+		if(temp_dish->dish_id==dish_id){
+			if(temp_dish->num_avail>=order.shares){
+				char cmd[1024];
+				snprintf(cmd,sizeof(cmd),"update foods set num_avail=%d where dish_id=%d;",
+				(temp_dish->num_avail-order.shares),order_dish.dish_id);
+				char **errmsg=NULL;
+				if(sqlite3_exec(db,cmd,NULL,NULL,errmsg)!=SQLITE_OK){
+					perror("db_utils_place_order:%s\n",*errmsg);
+					sqlite3_free(errmsg);
+				}
+				is_success=true;
+			}
+			break;
+		}
+		next=next->next;
+	}
+	return is_success;
+}
+
+
+
 void db_utils_query_dishes(dishes_node_t *head){
 	const char* cmd="select * from foods";
 	char **errmsg=NULL;

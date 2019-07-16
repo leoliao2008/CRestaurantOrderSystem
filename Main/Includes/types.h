@@ -76,4 +76,9 @@ typedef struct response{
 	int data_len;
 }response_t;
 
+typedef struct msgbuf{
+	long mtype;
+	order_t order;
+}msg_buff_t;
+
 #endif

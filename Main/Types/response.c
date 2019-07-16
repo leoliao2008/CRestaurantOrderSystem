@@ -10,7 +10,7 @@ const char* response_update_customer_data(customer_t *cust)
 	return build_response(RESPONSE_TYPE_UPDATE_CUSTOMER, RESPONSE_RESULT_CODE_OK, data, strlen(data));
 }
 
-const char* reponse_show_menu(dish_t *dish_arr,int arr_size)
+const char* response_show_menu(dish_t *dish_arr,int arr_size)
 {
 	struct json_object* arr=json_object_new_array();
 	int i;
@@ -19,7 +19,6 @@ const char* reponse_show_menu(dish_t *dish_arr,int arr_size)
 	}
 	const char* data=json_object_to_json_string(arr);
 	return build_response(RESPONSE_TYPE_SHOW_MENU, RESPONSE_RESULT_CODE_OK, data, strlen(data));
-
 }
 
 const char* response_dish_ready(order_t *order)
@@ -32,6 +31,19 @@ const char* response_check_out(bill_t *bill)
 {
     const char* data=json_object_bill_to_json_string(bill);
     return build_response(RESPONSE_TYPE_CHECK_OUT, RESPONSE_RESULT_CODE_OK, data, strlen(data));
+}
+
+const char* response_place_order(order_t *order,bool is_avail)
+{
+	int result_code;
+	if(is_avail){
+		result_code=RESPONSE_RESULT_CODE_OK;
+	}else{
+		result_code=RESPONSE_RESULT_CODE_FAILURE;
+	}
+	const char* data=json_object_order_to_json_string(order);
+	return build_response(RESPONSE_TYPE_CHECK_OUT, result_code, data, strlen(data));
+
 }
 
 const char* build_response(int type,int result_code,const char *data,int data_len)

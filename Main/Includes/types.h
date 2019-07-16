@@ -19,6 +19,7 @@ typedef struct dishes_node{
 	struct dish *dish;
 	struct dishes_node *pre;
 	struct dishes_node *next;
+	int size;
 }dishes_node_t;
 
 typedef struct order{

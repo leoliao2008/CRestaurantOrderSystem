@@ -7,6 +7,7 @@ dishes_node_t* dishes_node_init_head()
 	head->dish=NULL;
 	head->pre=head;
 	head->next=head;
+	head->size=0;
 	return head;
 }
 
@@ -24,6 +25,7 @@ void dishes_node_add_dish(dishes_node_t *head,dish_t dish)
 	new_node->pre=head->pre;
 	head->pre->next=new_node;
 	head->pre=new_node;
+	head->size+=1;
 }
 
 void dishes_node_free(dishes_node_t *head)

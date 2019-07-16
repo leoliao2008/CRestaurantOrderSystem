@@ -15,6 +15,12 @@ typedef struct dish{
 	int num_avail;
 }dish_t;
 
+typedef struct dishes_node{
+	struct dish *dish;
+	struct dishes_node *pre;
+	struct dishes_node *next;
+}dishes_node_t;
+
 typedef struct order{
 	struct dish dish;
 	int shares;

@@ -6,7 +6,6 @@
 
 const char *json_object_order_to_json_string(order_t *order);
 order_t json_object_json_string_to_order(const char *json_str);
-
 struct json_object* json_object_order_to_json_object(order_t *order);
 
 

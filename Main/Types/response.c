@@ -10,9 +10,14 @@ const char* response_update_customer_data(customer_t *cust)
 	return build_response(RESPONSE_TYPE_UPDATE_CUSTOMER, RESPONSE_RESULT_CODE_OK, data, strlen(data));
 }
 
-const char* reponse_show_menu(dish_t *dish)
+const char* reponse_show_menu(dish_t *dish_arr,int arr_size)
 {
-	const char* data=json_object_dish_to_json_string(dish);
+	struct json_object* arr=json_object_new_array();
+	int i;
+	for(i=0;i<arr_size;i++){
+		json_object_array_add(arr,json_object_dish_to_json_object(&(dish_arr[i])));
+	}
+	const char* data=json_object_to_json_string(arr);
 	return build_response(RESPONSE_TYPE_SHOW_MENU, RESPONSE_RESULT_CODE_OK, data, strlen(data));
 
 }
